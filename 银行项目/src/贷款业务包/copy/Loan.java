@@ -52,7 +52,7 @@ public class Loan {
 				this.rate=0.0380;
 			}
 		}
-		//每月月供额=(贷款本金÷还款月数)+(贷款本金-已归还本金累计额)×月利率
+		//每月月供额=(贷款本金÷还款月数)+(贷款本金-已归还本金累计额)×月利率(等额本息还款法)
 		this.月还款额=money/(12*year)+(money)*rate/12;
 		this.剩余还款数=money;
 		System.out.println("您要贷款"+money+"万，贷款"+year+"年，贷款利率为："+rate+",每月还款额为："+月还款额);
@@ -74,7 +74,7 @@ public class Loan {
 	/////////////还款的方法
 	public void huanKuan(Cart c1) {
 		
-		this.剩余还款数=剩余还款数-月还款额;
+		this.剩余还款数=剩余还款数-money*rate/(year*12);
 		this.月还款额=money/(12*year)+(剩余还款数)*rate/12;
 		if (c1.getMoney()<月还款额) {
 			System.out.println("余额不足。请换张卡支付或者存一些钱。");
